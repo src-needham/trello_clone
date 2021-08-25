@@ -8,6 +8,8 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+- Used Jumpstart during creation of application:
+  https://github.com/excid3/jumpstart
 
 * Configuration
 
