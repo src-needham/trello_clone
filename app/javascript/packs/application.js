@@ -3,31 +3,20 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-window.Rails = require("@rails/ujs")
-require("@hotwired/turbo-rails")
-require("@rails/activestorage").start()
-require("channels")
-//require("trix")
-//require("@rails/actiontext")
-require("local-time").start()
+import Vue from 'vue/dist/vue.esm'
+import App from '../app.vue'
 
-// Start Rails UJS
-Rails.start()
+document.addEventListener("turbolinks:load", function() {
+  var element = document.querySelector("#boards")
 
-// Stimulus
-import "controllers"
-
-// Bootstrap
-import 'bootstrap'
-
-document.addEventListener("turbo:load", () => {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-
-  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    return new bootstrap.Popover(popoverTriggerEl)
-  })
-})
+  if (element != undefined) {
+    const app = new Vue({
+      el: element,
+      data: {
+        lists: JSON.parse(element.dataset.lists)
+      },
+      template: "<App :original_lists='lists' />",
+      components: { App }
+    })
+  }
+});

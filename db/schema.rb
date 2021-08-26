@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_112536) do
   create_table "cards", force: :cascade do |t|
     t.bigint "list_id"
     t.string "name"
-    t.integer "postition"
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["list_id"], name: "index_cards_on_list_id"

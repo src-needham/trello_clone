@@ -3,7 +3,7 @@ class CreateCards < ActiveRecord::Migration[6.1]
     create_table :cards do |t|
       t.references :list
       t.string :name
-      t.integer :postition
+      t.integer :position
 
       t.timestamps
     end
