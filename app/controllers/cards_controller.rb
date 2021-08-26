@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :set_card, only: [ :show, :edit, :update, :destroy, :move ]
 
   # GET /cards or /cards.json
   def index
@@ -28,7 +28,7 @@ class CardsController < ApplicationController
         format.html { redirect_to @card, notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @card.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +41,7 @@ class CardsController < ApplicationController
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @card.errors, status: :unprocessable_entity }
       end
     end
