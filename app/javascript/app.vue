@@ -1,8 +1,7 @@
 <template>
-  <draggable v-model="lists" :options="{group: 'lists'}" class="row dragArea" @change="listMoved">
-    <div v-for="(list, index) in lists" class="col-3" v-bind:key="list in original_lists">
+  <draggable v-model="lists" :options="{group: 'lists'}" class="board dragArea" @change="listMoved">
+    <div v-for="(list, index) in lists" class="list" v-bind:key="list in original_lists">
       <h6>{{ list.name }}</h6>
-      <hr />
 
       <draggable v-model="list.cards" :options="{group: 'cards'}" class="dragArea" @change="cardMoved">
         <div v-for="(card, index) in list.cards" class="card card-body mb-3" v-bind:key="(card, index) in list.cards">
@@ -88,6 +87,19 @@ export default {
 
 <style scoped>
 .dragArea {
-  min-height: 20px;
+  min-height: 10px;
+}
+.board {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.list {
+  background: #e2e4e6;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 15px;
+  padding: 10px;
+  vertical-align: top;
+  width: 270px;
 }
 </style>

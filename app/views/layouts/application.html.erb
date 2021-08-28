@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html>
   <head>
     <%= render 'shared/head' %>
   </head>
 
-  <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0"> 
+  <body>
       <%= render 'shared/navbar' %>
       <%= render 'shared/notices' %>
 
-      <div class="container mt-4 mx-auto">
+      <div class="container-fluid">
         <%= yield %>
       </div>
-    </main>
 
     <%= render 'shared/footer' %>
   </body>
