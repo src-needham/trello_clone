@@ -28,6 +28,8 @@ import TurbolinksAdapter from 'vue-turbolinks'
 Vue.use(Vuex)
 Vue.use(TurbolinksAdapter)
 
+window.store = {}
+
 document.addEventListener("turbolinks:load", function() {
   var element = document.querySelector("#boards")
   if (element != undefined) {
@@ -35,8 +37,8 @@ document.addEventListener("turbolinks:load", function() {
 
     const app = new Vue({
       el: element,
-      store: window.store,
-      template: "<App />",
+      data: window.store,
+      template: "<App :original_lists='lists />",
       components: { App }
     })
   }
