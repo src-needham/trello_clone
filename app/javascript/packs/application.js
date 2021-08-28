@@ -30,7 +30,6 @@ Vue.use(TurbolinksAdapter)
 
 document.addEventListener("turbolinks:load", function() {
   var element = document.querySelector("#boards")
-
   if (element != undefined) {
     window.store.state.lists = JSON.parse(element.dataset.lists)
 
