@@ -3,9 +3,7 @@
   <h6>{{ list.name }}</h6>
 
   <draggable v-model="list.cards" :options="{group: 'cards'}" class="dragArea" @change="cardMoved">
-    <div v-for="(card, index) in list.cards" class="card card-body mb-3" v-bind:key="(card, index) in list.cards">
-      {{ card.name }}
-    </div>
+    <card v-for="card in list.cards" :card="card" :list="list" v-bind:key="(card, index) in list.cards"></card>
   </draggable>
 
   <div class="card card-body">
@@ -19,10 +17,11 @@
 
 <script>
 import draggable from 'vuedraggable'
+import card from 'components/card'
 
 export default {
-  components: { draggable },
-  props: ["list"],
+  components: { card, draggable },
+  props: ["card", "list"],
   data: function() {
     return {
       editing: false,
@@ -57,7 +56,7 @@ export default {
         dataType: "json"
       })
     },
-    submitMessages: function() {
+    submitMessage: function() {
       var data = new FormData
       data.append("card[list_id]", this.list.id)
       data.append("card[name]", this.messages)
