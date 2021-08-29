@@ -9,7 +9,7 @@
   <div class="card card-body">
     <a v-if="!editing" v-on:click="startEditing=true">Add a card</a>
     <textarea v-if="editing" ref="message" v-model="messages" class="form-control"></textarea>
-    <button v-if="editing" v-on:click="submtMessages" class="btn btn-secondary">Add</button>
+    <button v-if="editing" v-on:click="createCard" class="btn btn-secondary">Add</button>
     <a v-if="editing" v-on:click="editing=false">Cancel</a>
   </div>
 </div>
@@ -56,7 +56,7 @@ export default {
         dataType: "json"
       })
     },
-    submitMessage: function() {
+    createCard: function() {
       var data = new FormData
       data.append("card[list_id]", this.list.id)
       data.append("card[name]", this.messages)
@@ -67,8 +67,6 @@ export default {
         data: data,
         dataType: "json",
         success: (data) => {
-          const index = window.store.lists.findIndex(item => item.id == this.list.id)
-          window.store.lists[index].cards.push(data)
           this.message = ""
         }
       })
@@ -78,13 +76,5 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  background: #e2e4e6;
-  border-radius: 3px;
-  display: inline-block;
-  margin-right: 15px;
-  padding: 10px;
-  vertical-align: top;
-  width: 270px;
-}
+
 </style>
